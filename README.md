@@ -1,0 +1,2 @@
+# discord-youtubeplaylist-bot
+discordチャンネルに投稿された動画が自動でyoutubeの再生リストに保存される機能を持たせたbotです
