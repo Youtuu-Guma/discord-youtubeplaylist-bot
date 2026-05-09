@@ -12,3 +12,7 @@ GUI（Tkinter）による統計確認、連携チャンネル管理、および�
 - **Language:** Python 3.10+
 - **Main Libraries:** `discord.py`, `google-api-python-client`, `tkinter`
 - **Database:** SQLite3
+## 取り扱い方法
+1 リリースから、.zipファイルをダウンロードし、解凍してください。
+2 解凍後の.exeファイルの入ったフォルダはダウンロードから移動させておくことをお勧めします。
+3 
