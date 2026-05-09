@@ -32,7 +32,6 @@ class YouTubeManager:
         self.youtube = build('youtube', 'v3', credentials=credentials, static_discovery=False)
 
     async def add_video_to_playlist(self, video_id, playlist_id):
-        """戻り値: (成功したか, クォータ制限か)"""
         if not self.youtube: return False, False
         try:
             request = self.youtube.playlistItems().insert(
@@ -42,11 +41,5 @@ class YouTubeManager:
             await asyncio.get_event_loop().run_in_executor(None, request.execute)
             return True, False
         except HttpError as e:
-            if e.resp.status in [403]: # クォータ超過
-                logging.warning(f"YouTube API クォータ制限に達しました: {video_id}")
-                return False, True
-            logging.error(f"YouTube APIエラー: {e}")
-            return False, False
-        except Exception as e:
-            logging.error(f"予期せぬエラー: {e}")
+            if e.resp.status in [403]: return False, True
             return False, False

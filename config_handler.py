@@ -4,7 +4,7 @@ import sys
 
 class BotConfig:
     def __init__(self):
-        # パス解決の共通化
+        # EXE化後のパス解決
         if hasattr(sys, '_MEIPASS'):
             self.base_dir = os.path.dirname(sys.executable)
         else:
@@ -22,9 +22,7 @@ class BotConfig:
     def _create_default(self):
         self.config["BOT"] = {
             "discord_token": "ENTER_TOKEN",
-            "admin_id": "ENTER_YOUR_ID",
-            "whitelist_users": "",
-            "cui_mode": "False"
+            "admin_id": "ENTER_YOUR_ID"
         }
         with open(self.config_path, "w", encoding='utf-8') as f:
             self.config.write(f)
@@ -33,9 +31,3 @@ class BotConfig:
     def discord_token(self): return self.config.get("BOT", "discord_token", fallback="ENTER_TOKEN")
     @property
     def admin_id(self): return self.config.get("BOT", "admin_id", fallback="")
-    @property
-    def cui_mode(self): return self.config.getboolean("BOT", "cui_mode", fallback=False)
-    @property
-    def whitelist(self):
-        ws = self.config.get("BOT", "whitelist_users", fallback="")
-        return [i.strip() for i in ws.split(",") if i.strip()]
